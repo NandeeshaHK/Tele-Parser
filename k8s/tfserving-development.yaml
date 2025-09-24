@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tf-serving
+  namespace: telemetry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tf-serving
+  template:
+    metadata:
+      labels:
+        app: tf-serving
+    spec:
+      containers:
+        - name: tfserving
+          image: tensorflow/serving:2.13.0
+          args:
+            - "--port=8500"
+            - "--rest_api_port=8501"
+            - "--model_config_file=/models/models.config"
+          ports:
+            - containerPort: 8501
+          volumeMounts:
+            - name: model-config
+              mountPath: /models
+      volumes:
+        - name: model-config
+          configMap:
+            name: telemetry-model-config
