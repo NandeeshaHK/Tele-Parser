@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telemetry-consumer
+  namespace: telemetry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telemetry-consumer
+  template:
+    metadata:
+      labels:
+        app: telemetry-consumer
+    spec:
+      containers:
+        - name: consumer
+          image: telemetry-pipeline:consumer
+          command: ["python", "src/consumer/consumer.py"]
+          env:
+            - name: KAFKA_BOOTSTRAP
+              value: "your-kafka:9092"
