@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "Telemetry",
+  "fields": [
+    {"name": "timestamp", "type": "long"},
+    {"name": "car_id", "type": "string"},
+    {"name": "lap_number", "type": "int"},
+    {"name": "speed", "type": "float"},
+    {"name": "throttle", "type": "float"},
+    {"name": "brake", "type": "float"},
+    {"name": "gear", "type": "int"},
+    {"name": "track_temp", "type": "float"},
+    {"name": "predicted_lap_time", "type": ["null", "float"], "default": null}
+  ]
+}
