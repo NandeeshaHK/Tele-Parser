@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telemetry-model-config
+  namespace: telemetry
+data:
+  models.config: |
+    model_config_list: {
+      config: {
+        name: "lap_model",
+        base_path: "/models/lap_model",
+        model_platform: "tensorflow"
+      }
+    }
