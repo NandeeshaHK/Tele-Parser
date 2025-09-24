@@ -1,0 +1,8 @@
+type Query {
+  health: String!
+  predict(features: [Float]!): Float
+}
+
+schema {
+  query: Query
+}
